@@ -669,6 +669,10 @@ public:
     CONSTCD14 year_month_day(const year_month_day_last& ymdl) NOEXCEPT;
 
     CONSTCD14 year_month_day(sys_days dp) NOEXCEPT;
+
+    template<typename time_point>
+    CONSTCD14 year_month_day(time_point tp) NOEXCEPT;
+
     CONSTCD14 explicit year_month_day(local_days dp) NOEXCEPT;
 
     template<class = detail::unspecified_month_disambiguator>
@@ -2662,6 +2666,14 @@ inline
 year_month_day::year_month_day(sys_days dp) NOEXCEPT
     : year_month_day(from_days(dp.time_since_epoch()))
     {}
+
+template<typename time_point>
+CONSTCD14
+inline
+year_month_day::year_month_day(time_point dp) NOEXCEPT
+    : year_month_day(from_days(dp.time_since_epoch()))
+{}
+
 
 CONSTCD14
 inline
